@@ -36,6 +36,10 @@ jobs:
       # Step 2: Add deploy to Github pages here! Hot tip - The solution is in the Readme
       - name: Build
         run: npm run build
+      - name: "Hello world when it's Monday"
+        run: echo "Hello $USERNAME, today is Monday!"
+        env:
+          USERNAME: amundbuer
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
