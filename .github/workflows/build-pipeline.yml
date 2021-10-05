@@ -36,5 +36,5 @@ jobs:
         uses: amundbuer/amundbuer.github.io
         with:
           branch: gh-pages
-          folder: dist
+          folder: root
       
