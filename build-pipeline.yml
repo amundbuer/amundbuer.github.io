@@ -53,9 +53,31 @@ jobs:
         run: echo "Hello $USERNAME, today is Monday!"
         env:
           USERNAME: amundbuer
+          SECRET: ${{secrets.PASSWORD}}
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
           folder: dist
-      
+  docker:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Login
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+      - name: Store
+        uses: docker/metadata-action@v3
+        with:
+          namespace: amundbuer/accenture_workshop
+      - name: Push
+        uses: docker/build-push-action@v2
