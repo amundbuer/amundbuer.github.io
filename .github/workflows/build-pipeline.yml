@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
-        uses: amundbuer/github-pages-deploy-action@4.1.4
+        uses: amundbuer/amundbuer.github.io
         with:
           branch: gh-pages
           folder: dist
