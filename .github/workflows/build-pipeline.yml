@@ -37,6 +37,12 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
+      - name: "Hello world when it's Monday"
+        run: echo "Hello $USERNAME, today is Monday!"
+        env:
+          FIRST_NAME: Mona
+          MIDDLE_NAME: The
+          LAST_NAME: Octocat
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
